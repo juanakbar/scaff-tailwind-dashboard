@@ -2,7 +2,7 @@
     <div class="p-4 sm:p-8 bg-white block sm:flex items-center justify-between rounded-xl lg:mt-1.5 dark:bg-gray-800">
 
         <div class="w-full mb-1">
-            <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white mb-3">Users & Access Controls</h1>
+            <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white mb-3">Roles & Permissions</h1>
             <div class="items-center justify-between block sm:flex mb-6">
                 <form class="sm:pr-3" action="#" method="GET">
                     <label for="products-search" class="sr-only">Search</label>
@@ -43,6 +43,7 @@
                                     No Data Role Found
                                 @else
                                     @foreach ($roles as $item)
+                                        @include('/superadmin/Roles/partials/edit-modal')
                                         <tr
                                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                             <th scope="row"
@@ -51,8 +52,9 @@
                                             </th>
 
                                             <td class="px-6 py-4 text-right flex justify-end gap-3">
-                                                <a href="#"
-                                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                                <button data-modal-target="defaultModal{{ $item->id }}"
+                                                    data-modal-toggle="defaultModal{{ $item->id }}"
+                                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
                                                 |
                                                 <form action="{{ route('roles.destroy', $item->id) }}" method="post">
                                                     @csrf
@@ -70,8 +72,11 @@
 
                 </div>
             </div>
+            <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white mb-3">User Have Role &
+                Permissions</h1>
             <div
                 class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+
                 <div class="flow-root">
                     <div class="flex justify-between">
                         <h3 class="text-xl font-semibold dark:text-white">Users</h3>

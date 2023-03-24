@@ -12,7 +12,7 @@ class RoleController extends Controller
     public function index()
     {
 
-        $roles = Role::whereNotIn('name', ['super-admin'])->get();
+        $roles = Role::latest()->get();
         $users = User::with('roles')->get();
         // return $users;
         return view('superadmin.Roles.index', [
@@ -41,9 +41,17 @@ class RoleController extends Controller
     {
         //
     }
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $role)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $role->update([
+            'name' => $request->name,
+        ]);
+        flash()->addSuccess('Role Succesfully Updated!');
+        return back();
     }
 
     public function destroy(Role $role)

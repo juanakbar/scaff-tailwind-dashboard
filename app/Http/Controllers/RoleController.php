@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
@@ -14,10 +15,11 @@ class RoleController extends Controller
 
         $roles = Role::latest()->get();
         $users = User::with('roles')->get();
-        // return $users;
+        $perms = Permission::latest()->get();
         return view('superadmin.Roles.index', [
             'roles' => $roles,
             'users' => $users,
+            'perms' => $perms
         ]);
     }
 

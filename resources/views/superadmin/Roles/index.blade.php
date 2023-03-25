@@ -34,7 +34,7 @@
                                         Role
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        <span class="sr-only">Edit</span>
+                                        <span>Action</span>
                                     </th>
                                 </tr>
                             </thead>
@@ -42,7 +42,7 @@
                                 @if (!$roles)
                                     No Data Role Found
                                 @else
-                                    @foreach ($roles as $item)
+                                    @foreach ($perms as $item)
                                         @include('/superadmin/Roles/partials/edit-modal')
                                         <tr
                                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -51,7 +51,7 @@
                                                 {{ $item->name }}
                                             </th>
 
-                                            <td class="px-6 py-4 text-right flex justify-end gap-3">
+                                            <td class="px-6 py-4 text-left flex justify-start gap-3">
                                                 <button data-modal-target="defaultModal{{ $item->id }}"
                                                     data-modal-toggle="defaultModal{{ $item->id }}"
                                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
@@ -72,8 +72,7 @@
 
                 </div>
             </div>
-            <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white mb-3">User Have Role &
-                Permissions</h1>
+            <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white mb-3">User Have Role</h1>
             <div
                 class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
 
@@ -107,7 +106,10 @@
                                         Role
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        <span class="sr-only">Edit</span>
+                                        Permission
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        <span>Action</span>
                                     </th>
                                 </tr>
                             </thead>
@@ -134,10 +136,15 @@
                                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 {{ $item->roles[0]->name }}
                                             </th>
+                                            <th scope="row"
+                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                Permission
+                                            </th>
 
-                                            <td class="px-6 py-4 text-right">
+                                            <td class="px-6 py-4 text-left">
                                                 <a href="#"
-                                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit
+                                                    Role</a>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AreaController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['role:super-admin'])->group(function () {
     Route::resource('roles', RoleController::class);
+    Route::resource('area', AreaController::class);
 });
 
 Route::middleware('auth')->group(function () {
